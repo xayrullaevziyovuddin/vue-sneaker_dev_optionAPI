@@ -10,22 +10,22 @@
                             <img :src="item.images" alt="item.id">
                         </div>
                         <div class="modal__block-card-text">
-                            <p>{{item.title}}</p>
-                            <span>{{item.price}}руб.</span>
+                            <p>{{ item.title }}</p>
+                            <span>{{ item.price }}руб.</span>
                         </div>
                         <div class="modal__block-card-btn">
-                            <button @click="removeFromBasket(item)" >
+                            <button @click="removeFromBasket(item)">
                                 <img src="../assets/images/icons/x.svg" alt="x">
                             </button>
                         </div>
                     </div>
-                  
+
 
                 </div>
 
                 <div class="modal__block-info">
-                    <p>Итого:_______________________ <span>21 498 руб. </span> </p>
-                    <p>Наолог 5%:_______________________ <span>1074 руб. </span> </p>
+                    <p>Итого:_______________________ <span>{{totalPrice  }} руб</span> </p>
+                    <p>Наолог 5%:_______________________ <span>{{ Math.floor(totalPrice * 0.05 )    }}руб </span> </p>
                     <button>Оформить заказ</button>
                 </div>
             </div>
@@ -45,7 +45,7 @@ export default {
     },
     data() {
         return {
-
+            
         }
     },
 
@@ -55,17 +55,21 @@ export default {
 
         },
         removeFromBasket(item) {
-      // Вызываем мутацию removeFromBasket и передаем id товара для удаления
-      this.$store.commit('removeFromBasket', item.id);
-      item.basket = false
-    }
+            // Вызываем мутацию removeFromBasket и передаем id товара для удаления
+            this.$store.commit('removeFromBasket', item.id);
+            item.basket = false
+        }
     },
     computed: {
         basket() {
             return this.$store.getters.getBasket; // Получаем корзину из геттера
         },
+        totalPrice() {
+            return this.$store.getters.getTotalPrice
 
-        
+        }
+
+
 
     },
 }

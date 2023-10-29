@@ -4,7 +4,7 @@
         <div class="main__products">
 
 
-            <ProducrsCard ></ProducrsCard>
+            <ProductsCard ></ProductsCard>
 
         </div>
 
@@ -14,10 +14,10 @@
 
 <script>
 
-import ProducrsCard from './ProducrsCard.vue';
+import ProductsCard from './ProductsCard.vue';
 
 export default {
-    components: { ProducrsCard },
+    components: { ProductsCard },
     data() {
         return {
       
