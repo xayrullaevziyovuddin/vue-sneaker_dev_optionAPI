@@ -1,30 +1,42 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <div class="wrapper">
+    <HomePage  :modalShow="modalShow"   @toggle-modal="toggleModal"/>
+    <RouterView/>
+    <Modal v-show="!modalShow"  :modalShow="modalShow"  @closeModal="closeModal"></Modal>
+  </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+<script>
+
+import HomePage from './components/HomePage.vue';
+import Modal from './components/Modal.vue';
+
+export default {
+    components: { HomePage, Modal },
+
+    data() {
+      return {
+        modalShow:true,
+        basket:[],
+        foloving:[],
+      
+      }
+    },
+
+    methods: {
+ 
+    closeModal() {
+        document.body.classList.remove('modal-open');
+        this.modalShow =  !this.modalShow;
+    },
+    toggleModal() {
+            this.modalShow =  !this.modalShow;
+            document.body.classList.add('modal-open');
+        }
+},
+
+
 }
+</script>
 
-nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
-</style>
+<style lang="scss" scoped></style>
