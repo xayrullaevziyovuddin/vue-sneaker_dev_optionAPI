@@ -41,8 +41,13 @@
                         <button @click="closeModal"> Вернуться назад </button>
                     </div>
                 </div>
-                <div v-if="showThankYouMessage" class="thank-you-message">
+                <div v-if="showThankYouMessage" class="modal__block-iner">
                     <p>Спасибо за заказ!</p>
+                    <div class="modal__block-iner-img">
+                        <img src="../assets/images/icons/good.svg" alt="box">
+                    </div>
+                    <span>Заказ оформлен!</span>
+                    <p>Ваш заказ # {{Math.floor(Math.random() * (100 - 1 + 1)) + 1}} скоро будет передан курьерской доставке</p>
                 </div>
 
             </div>
@@ -84,7 +89,7 @@ export default {
             this.showThankYouMessage = true;
             setTimeout(() => {
                 this.showThankYouMessage = false;
-            }, 3000);
+            }, 5000);
         
         }
     },

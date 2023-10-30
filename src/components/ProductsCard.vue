@@ -1,5 +1,5 @@
 <template>
-    <div class="card" v-for="card in cards" :key="card.id">
+    <div class="card" v-for="card in filterProdects" :key="card.id">
         <button @click="favorite(card.id)" class="card__foloving" :class="{ 'red': card.favorite }">
             <img v-if="!card.favorite" src="../assets/images/icons/favoriteCard.svg" alt="">
             <img v-if="card.favorite" src="../assets/images/icons/favoriteCardred.svg" alt="">
@@ -12,7 +12,7 @@
         <div class="card__price">
             <div>
                 <p>Цена:</p>
-                
+
                 <p>{{ card.price }} руб</p>
             </div>
             <div>
@@ -34,6 +34,12 @@
 import { products } from '../product.js'
 
 export default {
+
+    props: {
+        search: String,
+        sortOption: String,
+    },
+
     data() {
         return {
             cards: products,
@@ -63,6 +69,32 @@ export default {
             card.basket = !card.basket;
         }
 
+
+
+    },
+
+    computed: {
+
+        filterProdects() {
+            let filteredCards = this.search
+            ? this.cards.filter(card => card.title.toLowerCase().includes(this.search.toLowerCase()))
+            : this.cards;
+
+        if (this.sortOption === "asc") {
+            filteredCards.sort((a, b) => a.price - b.price);
+        } else if (this.sortOption === "desc") {
+            filteredCards.sort((a, b) => b.price - a.price);
+        } else if (this.sortOption === "nameAsc") {
+            filteredCards.sort((a, b) => a.title.localeCompare(b.title));
+        } else if (this.sortOption === "nameDesc") {
+            filteredCards.sort((a, b) => b.title.localeCompare(a.title));
+        }else if (this.sortOption === "keyAsc") {
+            filteredCards.sort((a, b) => a.id - b.id);
+        }
+
+        return filteredCards;
+
+        }
 
 
     },
