@@ -3,7 +3,8 @@
         <div class="modal" @click="closeModal">
 
             <div class="modal__block" @click.stop="">
-                <div class="modal__block-top">
+
+                <div v-if="basket.length > 0" class="modal__block-top">
                     <span>Корзина</span>
                     <div class="modal__block-card" v-for="item in basket" :key="item.id">
                         <div class="modal__block-card-img">
@@ -23,11 +24,27 @@
 
                 </div>
 
-                <div class="modal__block-info">
-                    <p>Итого:_______________________ <span>{{totalPrice  }} руб</span> </p>
-                    <p>Наолог 5%:_______________________ <span>{{ Math.floor(totalPrice * 0.05 )    }}руб </span> </p>
-                    <button>Оформить заказ</button>
+                <div v-if="basket.length > 0" class="modal__block-info">
+                    <p>Итого:_______________________ <span>{{ totalPrice }} руб</span> </p>
+                    <p>Наолог 5%:_______________________ <span>{{ Math.floor(totalPrice * 0.05) }}руб </span> </p>
+                    <button @click="sendBasket">Оформить заказ</button>
+
                 </div>
+
+                <div v-if="basket.length == 0 && !showThankYouMessage" class="modal__block-iner">
+                    <div class="modal__block-iner-img">
+                        <img src="../assets/images/icons/box.svg" alt="box">
+                    </div>
+                    <span>Корзина пустая</span>
+                    <p>Добавьте хотя бы одну пару кроссовок,бомж так сложно купить пару кроссовок</p>
+                    <div class="modal__block-iner-btn">
+                        <button @click="closeModal"> Вернуться назад </button>
+                    </div>
+                </div>
+                <div v-if="showThankYouMessage" class="thank-you-message">
+                    <p>Спасибо за заказ!</p>
+                </div>
+
             </div>
 
         </div>
@@ -45,7 +62,7 @@ export default {
     },
     data() {
         return {
-            
+            showThankYouMessage: false,
         }
     },
 
@@ -58,6 +75,17 @@ export default {
             // Вызываем мутацию removeFromBasket и передаем id товара для удаления
             this.$store.commit('removeFromBasket', item.id);
             item.basket = false
+        },
+        sendBasket() {
+
+            this.$store.commit('clearBasket');
+
+
+            this.showThankYouMessage = true;
+            setTimeout(() => {
+                this.showThankYouMessage = false;
+            }, 3000);
+        
         }
     },
     computed: {

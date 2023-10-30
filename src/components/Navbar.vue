@@ -11,7 +11,7 @@
         <div class="header__nav-item">
             <div class="header__nav-item-basket">
                <button @click="openModal" ><img src="@/assets/images/icons/basket.svg" alt=""></button> 
-                <span>1205 руб.</span>
+                <span>{{totalPrice}} руб.</span>
             </div>
             <div class="header__nav-item-info">
                 <a href="#!"><img src="@/assets/images/icons/favorites.svg" alt=""></a>
@@ -53,6 +53,13 @@ export default {
     },
 
         
+  },
+
+  computed: {
+    totalPrice() {
+            return this.$store.getters.getTotalPrice
+
+        }
   },
 
 };

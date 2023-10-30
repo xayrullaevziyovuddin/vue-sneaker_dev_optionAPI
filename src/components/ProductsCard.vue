@@ -12,6 +12,7 @@
         <div class="card__price">
             <div>
                 <p>Цена:</p>
+                
                 <p>{{ card.price }} руб</p>
             </div>
             <div>
