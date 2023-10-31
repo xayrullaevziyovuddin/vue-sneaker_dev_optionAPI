@@ -14,7 +14,7 @@
                 <span>{{totalPrice}} руб.</span>
             </div>
             <div class="header__nav-item-info">
-                <a href="#!"><img src="@/assets/images/icons/favorites.svg" alt=""></a>
+               <router-link to="/favorite" ><img src="@/assets/images/icons/favorites.svg" alt=""></router-link> 
                 <a v-if="!user" href="#!"><img src="@/assets/images/icons/men.svg" alt=""></a>
                 <a v-if="user"  href="#!"><img :src="user.picture" alt=""></a>
                 <button v-if="!user" @click="login">Log in</button>

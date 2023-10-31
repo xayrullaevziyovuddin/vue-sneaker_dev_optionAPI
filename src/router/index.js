@@ -3,7 +3,9 @@ import {
   createWebHashHistory
 } from 'vue-router'
 import Home from '@/views/Home.vue'
-const routes = [{
+
+const routes = [
+  {
 
     pat: '/',
     name:'HomePage',
@@ -11,7 +13,7 @@ const routes = [{
 
   },
   {
-
+    path: '/favorite', name:'FavoritePage', component: () => import('@/views/Favorite.vue')
   }
 ]
 

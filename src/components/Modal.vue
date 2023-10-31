@@ -47,7 +47,8 @@
                         <img src="../assets/images/icons/good.svg" alt="box">
                     </div>
                     <span>Заказ оформлен!</span>
-                    <p>Ваш заказ # {{Math.floor(Math.random() * (100 - 1 + 1)) + 1}} скоро будет передан курьерской доставке</p>
+                    <p>Ваш заказ # {{ Math.floor(Math.random() * (100 - 1 + 1)) + 1 }} скоро будет передан курьерской доставке
+                    </p>
                 </div>
 
             </div>
@@ -90,7 +91,7 @@ export default {
             setTimeout(() => {
                 this.showThankYouMessage = false;
             }, 5000);
-        
+
         }
     },
     computed: {

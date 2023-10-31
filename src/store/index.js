@@ -5,6 +5,7 @@ import {
 export default createStore({
   state: {
     basket: [],
+    favorite: [],
     totalPrice: 0,
     nds: 0.05,
 
@@ -15,6 +16,11 @@ export default createStore({
       state.totalPrice += product.price;
 
     },
+    addToFavorite(state, product) {
+      state.favorite.push(product);
+
+
+    },
     removeFromBasket(state, productId) {
       const removedProduct = state.basket.find(item => item.id === productId);
       if (removedProduct) {
@@ -22,11 +28,18 @@ export default createStore({
         state.totalPrice -= removedProduct.price;
       }
     },
+    removeFromFavoritet(state, productId) {
+      const removedProduct = state.favorite.find(item => item.id === productId);
+      if (removedProduct) {
+        state.favorite = state.favorite.filter(item => item.id !== productId);
+
+      }
+    },
     clearBasket(state) {
       // Clear the basket array and reset totalPrice to 0
       state.basket.forEach(item => {
         item.basket = false;
-    });
+      });
       state.basket = [];
       state.totalPrice = 0;
     }
@@ -39,6 +52,7 @@ export default createStore({
   getters: {
     // Геттеры могут быть определены здесь для получения состояния корзины
     getBasket: state => state.basket,
+    getFavorite: state => state.favorite,
     getTotalPrice: state => state.totalPrice
   }
 });
