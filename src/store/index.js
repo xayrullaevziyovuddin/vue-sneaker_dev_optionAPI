@@ -6,6 +6,7 @@ export default createStore({
   state: {
     basket: [],
     favorite: [],
+    sendBasket:[],
     totalPrice: 0,
     nds: 0.05,
 
@@ -35,11 +36,14 @@ export default createStore({
 
       }
     },
-    clearBasket(state) {
+    clearBasket(state,item) {
       // Clear the basket array and reset totalPrice to 0
       state.basket.forEach(item => {
         item.basket = false;
       });
+
+      state.sendBasket = state.basket
+
       state.basket = [];
       state.totalPrice = 0;
     }
@@ -53,6 +57,7 @@ export default createStore({
     // Геттеры могут быть определены здесь для получения состояния корзины
     getBasket: state => state.basket,
     getFavorite: state => state.favorite,
+    getSendBasket: state => state.sendBasket,
     getTotalPrice: state => state.totalPrice
   }
 });

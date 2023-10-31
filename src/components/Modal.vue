@@ -82,7 +82,7 @@ export default {
             this.$store.commit('removeFromBasket', item.id);
             item.basket = false
         },
-        sendBasket() {
+        sendBasket(item) {
 
             this.$store.commit('clearBasket');
 

@@ -14,7 +14,10 @@ const routes = [
   },
   {
     path: '/favorite', name:'FavoritePage', component: () => import('@/views/Favorite.vue')
-  }
+  },
+  {
+    path: '/purchases', name:'PurchasesPage', component: () => import('@/views/Purchases.vue')
+  },
 ]
 
 const router = createRouter({
