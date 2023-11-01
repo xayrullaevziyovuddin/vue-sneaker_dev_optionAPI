@@ -47,7 +47,8 @@
                         <img src="../assets/images/icons/good.svg" alt="box">
                     </div>
                     <span>Заказ оформлен!</span>
-                    <p>Ваш заказ # {{ Math.floor(Math.random() * (100 - 1 + 1)) + 1 }} скоро будет передан курьерской доставке
+                    <p>Ваш заказ # {{ Math.floor(Math.random() * (100 - 1 + 1)) + 1 }} скоро будет передан курьерской
+                        доставке
                     </p>
                 </div>
 
@@ -82,7 +83,7 @@ export default {
             this.$store.commit('removeFromBasket', item.id);
             item.basket = false
         },
-        sendBasket(item) {
+        sendBasket() {
 
             this.$store.commit('clearBasket');
 

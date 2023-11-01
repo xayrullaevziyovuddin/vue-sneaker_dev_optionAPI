@@ -48,7 +48,13 @@ export default {
     },
 
     methods: {
+        getСards() {
+            let localСards = localStorage.cards
+            if (localСards) {
+                this.cards = JSON.parse(localСards)
+            }
 
+        },
         /*    favorite(id) {
                console.log('Before toggle:', this.cards[id - 1].favorite);
                this.cards[id - 1].favorite = !this.cards[id - 1].favorite;
@@ -105,6 +111,9 @@ export default {
 
 
     },
+
+
+
 
 
 }

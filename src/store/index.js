@@ -8,13 +8,14 @@ export default createStore({
     favorite: [],
     sendBasket:[],
     totalPrice: 0,
-    nds: 0.05,
+
 
   },
   mutations: {
     addToBasket(state, product) {
       state.basket.push(product);
       state.totalPrice += product.price;
+      
 
     },
     addToFavorite(state, product) {
@@ -37,7 +38,7 @@ export default createStore({
       }
     },
     clearBasket(state,item) {
-      // Clear the basket array and reset totalPrice to 0
+
       state.basket.forEach(item => {
         item.basket = false;
       });
@@ -54,10 +55,12 @@ export default createStore({
 
   },
   getters: {
-    // Геттеры могут быть определены здесь для получения состояния корзины
+
     getBasket: state => state.basket,
     getFavorite: state => state.favorite,
     getSendBasket: state => state.sendBasket,
     getTotalPrice: state => state.totalPrice
-  }
+  },
+
+  
 });

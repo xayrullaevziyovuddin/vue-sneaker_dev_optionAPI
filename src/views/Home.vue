@@ -9,11 +9,8 @@
 import Products from '@/components/Products.vue';
 import Slider from '@/components/Slider.vue';
 
-    export default {
+export default {
     components: { Slider, Products }
 }
 </script>
 
-<style lang="scss" scoped>
-
-</style>
